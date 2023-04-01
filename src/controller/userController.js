@@ -56,10 +56,10 @@ const getUser = async (req, res) => {
   }
 
   const patchUser = async (req, res) => {
-
+  const {firstname,lastname,mobileNumber} =req.body
     const updateProduct = await userModel.findByIdAndUpdate(req.params.id,
       {
-        $set: req.body,
+       firstname,lastname,mobileNumber
       }, { new: true })
     return res.status(200).send(updateProduct)
       //   console.log(updatedData, "updated Data in patch");
