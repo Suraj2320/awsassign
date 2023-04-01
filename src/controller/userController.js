@@ -39,4 +39,31 @@ const logIn=async (req,res)=>{
 
 }
 
-module.exports ={logIn,signUp}
+const getUser = async (req, res) => {
+    const allUsers= await userModel.find()
+  
+    return res.send(allUsers)
+  }
+
+  const deleteUser = async (req, res) => {
+    //Delete
+  
+    const { id } = req.params;
+    const user = await userModel.findByIdAndDelete({ _id: id });
+    //   console.log(user, "User By Deleteing Id");
+    return res.status(201).send(user);
+  
+  }
+
+  const patchUser = async (req, res) => {
+
+    const updateProduct = await userModel.findByIdAndUpdate(req.params.id,
+      {
+        $set: req.body,
+      }, { new: true })
+    return res.status(200).send(updateProduct)
+      //   console.log(updatedData, "updated Data in patch");
+      ;
+  };
+
+module.exports ={logIn,signUp,getUser,deleteUser,patchUser}
