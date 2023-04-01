@@ -7,7 +7,7 @@ app.post("/signup",signUp)
 app.post("/login",logIn)
 app.get("/",getUser)
 app.delete("/:id",deleteUser)
-app.put("/:id",patchUser)
+app.put("/edit/:id",patchUser)
 
 
 module.exports =app
